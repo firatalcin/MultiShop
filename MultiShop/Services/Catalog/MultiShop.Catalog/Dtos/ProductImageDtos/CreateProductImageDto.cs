@@ -1,6 +1,6 @@
 ﻿namespace MultiShop.Catalog.Dtos.ProductImageDtos
 {
-    public class CreateProductImage
+    public class CreateProductImageDto
     {       
         public string Image1 { get; set; }
         public string Image2 { get; set; }
