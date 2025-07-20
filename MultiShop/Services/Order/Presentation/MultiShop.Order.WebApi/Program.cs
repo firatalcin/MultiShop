@@ -1,7 +1,13 @@
 using MultiShop.Order.Application.Features.CQRS.Handlers.AddressHandlers;
 using MultiShop.Order.Application.Features.CQRS.Handlers.OrderDetailHandlers;
+using MultiShop.Order.Application.Interfaces;
+using MultiShop.Order.Application.Services;
+using MultiShop.Order.Persistence.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+builder.Services.AddApplicationServices(builder.Configuration);
 
 builder.Services.AddScoped<GetAddressByIdQueryHandler>();
 builder.Services.AddScoped<GetAddressQueryHandler>();
