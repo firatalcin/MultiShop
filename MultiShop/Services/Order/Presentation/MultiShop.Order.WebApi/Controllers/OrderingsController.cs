@@ -28,6 +28,7 @@ namespace MultiShop.Order.WebApi.Controllers
         public async Task<IActionResult> GetOrderingById(int id)
         {
             var value = await _mediator.Send(new GetOrderingByIdQuery(id));
+            return Ok(value);
         }
 
         [HttpPost]
@@ -50,4 +51,5 @@ namespace MultiShop.Order.WebApi.Controllers
             await _mediator.Send(new RemoveOrderingCommand(id));
             return Ok("Ordering removed successfully.");
         }
+    }
 }

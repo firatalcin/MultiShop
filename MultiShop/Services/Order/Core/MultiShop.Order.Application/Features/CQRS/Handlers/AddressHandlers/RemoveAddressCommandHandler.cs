@@ -18,7 +18,7 @@ namespace MultiShop.Order.Application.Features.CQRS.Handlers.AddressHandlers
             var values = await _repository.GetByFilterAsync(x => x.Id == removeAddressCommand.Id);
             if (values != null)
             {
-                await _repository.DeleteAsync(values.Id);
+                await _repository.DeleteAsync(values);
             }
         }
     }

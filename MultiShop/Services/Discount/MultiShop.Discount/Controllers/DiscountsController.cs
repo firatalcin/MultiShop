@@ -51,4 +51,6 @@ namespace MultiShop.Discount.Controllers
             await _discountService.UpdateCouponAsync(updateCouponDto);
             return Ok("Kupon başarıyla güncellendi");
         }
+
+    }
 }
