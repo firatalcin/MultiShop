@@ -35,6 +35,8 @@ namespace MultiShop.IdentityServer.Controllers
             {
                 return Ok("Kullanıcı başarıyla eklendi");
             }
+
+            return BadRequest(result);
         }
     }
 }
