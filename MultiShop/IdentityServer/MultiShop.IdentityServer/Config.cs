@@ -2,6 +2,7 @@
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 
+using IdentityServer4;
 using IdentityServer4.Models;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using System.Collections.Generic;
@@ -47,6 +48,7 @@ namespace MultiShop.IdentityServer
 
         public static IEnumerable<Client> Clients => new Client[]
         {
+            //Visitor
             new Client
             {
                 ClientId = "MultiShopVisitorId",
@@ -57,7 +59,44 @@ namespace MultiShop.IdentityServer
                     new Secret("multishopsecret".Sha256())
                 },
                 AllowedScopes = { "CatalogReadOnlyPermission"}
-            }           
+            },
+            
+            //Manager
+            new Client
+            {
+                ClientId = "MultiShopManagerId",
+                ClientName = "Multi Shop Manager User",
+                AllowedGrantTypes = GrantTypes.ClientCredentials,
+                ClientSecrets =
+                {
+                    new Secret("multishopmanagersecret".Sha256())
+                },
+                AllowedScopes = { "CatalogFullPermission" }
+            },
+
+            //Admin
+            new Client
+            {
+                ClientId = "MultiShopAdminId",
+                ClientName = "Multi Shop Admin User",
+                AllowedGrantTypes = GrantTypes.ClientCredentials,
+                ClientSecrets =
+                {
+                    new Secret("multishopadminsecret".Sha256())
+                },
+                AllowedScopes = 
+                { 
+                    "CatalogFullPermission", 
+                    "DiscountFullPermission", 
+                    "OrderFullPermission", 
+                    IdentityServerConstants.LocalApi.ScopeName,
+                    IdentityServerConstants.StandardScopes.OpenId,
+                    IdentityServerConstants.StandardScopes.Profile,
+                    IdentityServerConstants.StandardScopes.Email
+                },
+                AccessTokenLifetime = 600
+
+            }
         };
     }
 }
